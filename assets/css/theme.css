@@ -1,0 +1,163 @@
+:root{
+    --transition-counter-bg: rgb(43, 35, 35);
+    --counter-bg: #000;
+    --counter-line-bg: #333;
+    --counter-line-size: 1px;
+    --counter-color: #fff;
+    --counter-radius: 5px;
+}
+html {
+    scroll-behavior: smooth;
+  }
+.bg-navigation{
+    background-color: #ccc;
+}
+#navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+#navbar div{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.nav-pills .nav-link {
+    border-radius: 0.8rem;
+}
+.scrolltop {
+    bottom: 80px;
+}
+.flipper {
+    font-size: 20px !important;
+}
+.flipper-group.flipper-delimiter{
+    display: none;
+}
+.flipper-ddd,.flipper-HH,.flipper-ii{
+    margin-right: 7px !important;
+}
+.flipper-group label {
+    font-size: 9px !important;
+}
+.flipper-digit:after {
+    height: var(--counter-line-size) !important;
+    background-color: var(--counter-line-bg) !important;
+}
+.transform-180 {
+    transform: rotate(180deg);
+    transform-origin: center;
+}
+/* #modalInvitation .modal-dialog {
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-51.5%, -50%);
+} */
+#modalInvitation.modal, #modalQR.modal {
+    background: rgba(0,0,0,0.9);
+}
+@media (max-width: 991.98px){
+    .scrolltop {
+        bottom: 70px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.btn.btn-primary {
+    color: #FFFFFF;
+    border-color: var(--bs-primary);
+    background-color: var(--bs-primary);
+}
+.btn-check:checked + .btn.btn-primary, .btn-check:active + .btn.btn-primary, .btn.btn-primary:focus:not(.btn-active), .btn.btn-primary:hover:not(.btn-active), .btn.btn-primary:active:not(.btn-active), .btn.btn-primary.active, .btn.btn-primary.show, .show > .btn.btn-primary {
+    color: #FFFFFF;
+    border-color: var(--bs-primary-hover);
+    background-color: var(--bs-primary-hover) !important;
+}
+.badge-primary{
+    background-color: var(--bs-primary) !important;
+}
+.label-countdown{
+    margin: 5px;
+}
+.text-primary {
+    color: var(--bs-primary) !important;
+}
+.text-secondary {
+    color: var(--bs-secondary) !important;
+}
+.bg-light-primary {
+    background-color: var(--bs-primary-light) !important;
+}
+.bg-primary{
+    background: var(--bs-primary) !important;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #FFFFFF;
+    background-color: var(--bs-primary);
+}
+.nav-link {
+    color: var(--bs-primary);
+}
+a {
+    color: var(--bs-primary);
+    text-decoration: none;
+}
+.btn-check:checked + .btn.btn-active-primary, .btn-check:active + .btn.btn-active-primary, .btn.btn-active-primary:focus:not(.btn-active), .btn.btn-active-primary:hover:not(.btn-active), .btn.btn-active-primary:active:not(.btn-active), .btn.btn-active-primary.active, .btn.btn-active-primary.show, .show > .btn.btn-active-primary {
+    color: #FFFFFF;
+    border-color: var(--bs-primary);
+    background-color: var(--bs-primary) !important;
+}
+.scrolltop {
+    background-color: var(--bs-primary);
+}
+.btn.btn-light {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary-light);
+    background-color: var(--bs-primary-light);
+}
+.btn.btn-light-primary {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary-light);
+    background-color: var(--bs-primary-light);
+}
+.accordion-button:not(.collapsed) {
+    color: var(--bs-primary);
+    background-color: var(--bs-primary-light);
+}
+.nav-link:hover, .nav-link:focus {
+    color: var(--bs-primary-hover);
+}
+.splide__slide img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}
+#thumbnail-slider .splide__slide img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.bg-cover{
+    position: absolute;
+    height: 100% !important;
+    width: 100% !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.17;
+}
+.border-primary {
+    border-color: var(--bs-primary) !important;
+}
+.btn.btn-primary .svg-icon svg [fill]:not(.permanent):not(g) {
+    transition: fill 0.3s ease;
+    fill: var(--invitation-bg);
+}
+
+.btn.btn-primary:hover:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g){
+    transition: fill 0.3s ease;
+    fill: var(--invitation-bg);
+}

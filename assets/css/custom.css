@@ -1,0 +1,181 @@
+@media (min-width: 992px) {
+    .header-fixed.toolbar-fixed .wrapper {
+        padding-top: 96px;
+    }
+    .content {
+        padding: 0 0;
+    }
+}
+.heart {
+    color: #e25555;
+}
+
+@media (max-width: 991.98px) {
+    .toolbar-enabled:not(.toolbar-tablet-and-mobile-fixed) .content {
+        padding-top: 15px;
+    }
+}
+
+.select2-container--bootstrap5 .select2-selection--single .select2-selection__rendered {
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #020202;
+}
+@media (max-width: 576px){
+    .col-xs-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+.guestbook-card {
+  background: #eef3ec;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.guestbook-name {
+font-size: 12px;
+  font-weight: 600;
+  color: #3f5f4b;
+  text-align: left;
+}
+
+.guestbook-date {
+  font-size: 7px;
+  color: #7a8f80;
+text-align: left;
+font-style: italic;
+}
+
+.guestbook-message {
+  margin-top: none;
+  font-size: 12px;
+  line-height: none;
+  text-align: left;
+}
+
+.guestbook-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.gb-action {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: #5f7468;
+  cursor: pointer;
+  padding: 0;
+}
+
+.gb-action span {
+  margin-left: 2px;
+}
+
+.guestbook-replies {
+  margin-top: 10px;
+  padding-left: 10px;
+  border-left: 2px solid #043f14;
+}
+
+.guestbook-reply {
+  margin-bottom: 2px;
+}
+
+.reply-name {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  color: #3f5f4b;
+}
+
+.reply-message {
+  font-size: 12px;
+  text-align: left;
+}
+
+
+#guestbook-list {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 6px;
+
+  /* biar scroll terasa halus */
+  scroll-behavior: smooth;
+}
+
+/* efek “menghilang” halus di atas & bawah */
+#guestbook-list {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+}
+
+.reply-toggle {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: #6b8574;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.guestbook-replies {
+  margin-top: 8px;
+  padding-left: 10px;
+  border-left: 2px solid #dbe6df;
+}
+
+
+.bride-photo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 20px;
+}
+
+.bride-photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: #7c9a73; /* hijau elegan */
+  padding: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.bride-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+}
+
+.bride-name {
+  margin-top: 10px;
+}
+
+.bride-sub {
+  margin-bottom: 10px;
+}
+
+.guestbook-card.me {
+  border: 2px solid var(--bs-primary);
+  background: rgba(0,0,0,0.03);
+}
