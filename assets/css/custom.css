@@ -183,3 +183,26 @@ font-style: italic;
 .rekening {
   background: rgba(0,0,0,0.03);
 }
+
+
+/* FONT KHUSUS ANGKA */
+.number,
+.countdown,
+.fs-5,
+.fs-3,
+.label-countdown {
+  font-family: 'Montserrat', sans-serif !important;
+  letter-spacing: 0.5px;
+}
+
+[data-rekening],
+.rekening {
+  font-family: 'Montserrat', sans-serif !important;
+  font-variant-numeric: tabular-nums;
+}
+
+
+.label-countdown {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+}
