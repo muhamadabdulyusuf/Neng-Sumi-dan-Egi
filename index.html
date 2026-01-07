@@ -752,9 +752,8 @@
                                   <div class="fs-5 fw-bold">7097746871</div>
                                   <button
                                     class="btn btn-clean py-0 px-2"
-                                    onclick="if (!window.__cfRLUnblockHandlers) return false; copyFromData(this)"
+                                    onclick="copyFromData(this)"
                                     data-rekening="7097746871"
-                                    data-cf-modified-28f97be7dcfbb716300f8843-=""
                                   >
                                     <i class="bi bi-copy text-dark"></i>
                                   </button>
@@ -782,9 +781,8 @@
                                       </div>
                                       <button
                                         class="btn btn-clean py-0 px-2"
-                                        onclick="if (!window.__cfRLUnblockHandlers) return false; copyFromData(this)"
+                                        onclick="copyFromData(this)"
                                         data-rekening="0124872014100"
-                                        data-cf-modified-28f97be7dcfbb716300f8843-=""
                                       >
                                         <i class="bi bi-copy text-dark"></i>
                                       </button>
@@ -822,9 +820,8 @@
                                   </div>
                                   <button
                                     class="btn btn-clean py-0 px-2"
-                                    onclick="if (!window.__cfRLUnblockHandlers) return false; copyFromData(this)"
+                                    onclick="copyFromData(this)"
                                     data-rekening="479601078009534"
-                                    data-cf-modified-28f97be7dcfbb716300f8843-=""
                                   >
                                     <i class="bi bi-copy text-dark"></i>
                                   </button>
@@ -1916,10 +1913,33 @@
     <script>
       function copyFromData(button) {
         const value = button.dataset.rekening;
-        navigator.clipboard
-          .writeText(value)
-          .then(() => toastr.success("Berhasil menyalin ke clipboard!"))
-          .catch(() => toastr.error("Gagal menyalin"));
+
+        // Modern clipboard (HTTPS only)
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard
+            .writeText(value)
+            .then(() => toastr.success("Berhasil menyalin nomor rekening"))
+            .catch(() => fallbackCopy(value));
+        } else {
+          fallbackCopy(value);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const input = document.createElement("input");
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        input.setSelectionRange(0, 99999);
+
+        try {
+          document.execCommand("copy");
+          toastr.success("Berhasil menyalin nomor rekening");
+        } catch (err) {
+          toastr.error("Gagal menyalin, silakan salin manual");
+        }
+
+        document.body.removeChild(input);
       }
     </script>
 

@@ -179,3 +179,7 @@ font-style: italic;
   border: 2px solid var(--bs-primary);
   background: rgba(0,0,0,0.03);
 }
+
+.rekening {
+  background: rgba(0,0,0,0.03);
+}
