@@ -36,7 +36,7 @@ module.exports = (req, res) => {
     const title = `Neng Sumi & Egi | Untuk ${guestName}`;
 
     const desc =
-      "Yth. " +
+      "kepada Yth. Bapak/Ibu/Saudara/i " +
       guestName +
       ", merupakan suatu kehormatan bagi kami jika Anda berkenan hadir. Klik untuk informasi selengkapnya.";
 
