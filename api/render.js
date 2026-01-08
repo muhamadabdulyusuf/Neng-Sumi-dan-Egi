@@ -24,9 +24,9 @@ module.exports = (req, res) => {
     const filePath = path.join(process.cwd(), "index.html");
     let html = fs.readFileSync(filePath, "utf8");
     const desc =
-      "Yth. Bapak/Ibu/Saudara/i " +
+      "Yth. " +
       guestName +
-      ", merupakan suatu kehormatan bagi kami jika Anda berkenan hadir dan memberikan doa restu di hari bahagia kami. Klik untuk informasi selengkapnya.";
+      ", merupakan suatu kehormatan bagi kami jika Anda berkenan hadir. Klik untuk informasi selengkapnya.";
     html = html.replace(
       /<meta\s+name=["']description["']\s+content=["'][^"']*["']\s*\/?>/i,
       '<meta name="description" content="' + desc + '" />'
