@@ -16,7 +16,10 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content="https://neng-sumi-dan-egi.vercel.app/themes/peppy/Thumbnail/Thumbnail.jpg" />
+    <meta
+      property="og:image"
+      content="https://neng-sumi-dan-egi.vercel.app/themes/peppy/Thumbnail/Thumbnail.jpg"
+    />
     <link rel="shortcut icon" href="/img/wevitation-icon-color.svg" />
 
     <!--begin::Fonts-->
@@ -690,10 +693,12 @@
                             </div>
                             <a
                               class="btn btn-sm btn-primary mt-1"
-                              href="/event.ics"
-                              ><span class="fas fa-calendar-check"></span>
-                              Simpan Tanggal</a
+                              href="webcal://neng-sumi-dan-egi.vercel.app/event.ics"
                             >
+                              <i class="bi bi-calendar-heart"></i> Simpan
+                              Tanggal
+                            </a>
+
                             <a
                               class="btn btn-sm btn-primary mt-1"
                               href="https://maps.app.goo.gl/MdnybrjTNXBa3Ld36"
@@ -1720,7 +1725,7 @@
         );
       }
     </script> -->
-    
+
     <script>
       $(document).ready(function () {});
 
@@ -1848,66 +1853,66 @@
     ></script> -->
     <script type="module" src="assets/js/supabase-backend.js"></script>
 
-   <script>
-  let shouldScroll = false;
-  let userInteracting = false;
-  let rafId = null;
-  let resumeTimer = null;
+    <script>
+      let shouldScroll = false;
+      let userInteracting = false;
+      let rafId = null;
+      let resumeTimer = null;
 
-  function startAutoScroll() {
-    if (rafId) return;
+      function startAutoScroll() {
+        if (rafId) return;
 
-    function step() {
-      if (!shouldScroll || userInteracting) {
-        rafId = null;
-        return;
+        function step() {
+          if (!shouldScroll || userInteracting) {
+            rafId = null;
+            return;
+          }
+
+          window.scrollBy(0, 1);
+          rafId = requestAnimationFrame(step);
+        }
+
+        rafId = requestAnimationFrame(step);
       }
 
-      window.scrollBy(0, 1);
-      rafId = requestAnimationFrame(step);
-    }
+      function pauseAutoScroll() {
+        userInteracting = true;
+        clearTimeout(resumeTimer);
 
-    rafId = requestAnimationFrame(step);
-  }
+        // AUTO RESUME setelah idle
+        resumeTimer = setTimeout(() => {
+          userInteracting = false;
+          shouldScroll = true;
+          startAutoScroll();
+        }, 1000);
+      }
 
-  function pauseAutoScroll() {
-    userInteracting = true;
-    clearTimeout(resumeTimer);
+      // INTERAKSI USER
+      ["wheel", "touchstart", "touchmove", "keydown", "click"].forEach(
+        (evt) => {
+          window.addEventListener(evt, pauseAutoScroll, { passive: true });
+        }
+      );
 
-    // AUTO RESUME setelah idle
-    resumeTimer = setTimeout(() => {
-      userInteracting = false;
-      shouldScroll = true;
-      startAutoScroll();
-    }, 1000);
-  }
+      // START PERTAMA KALI
+      document.addEventListener("DOMContentLoaded", () => {
+        shouldScroll = true;
+        startAutoScroll();
+      });
 
-  // INTERAKSI USER
-  ["wheel", "touchstart", "touchmove", "keydown", "click"].forEach((evt) => {
-    window.addEventListener(evt, pauseAutoScroll, { passive: true });
-  });
+      // MODAL INVITATION
+      $("#modalInvitation").on("shown.bs.modal", function () {
+        shouldScroll = false;
+      });
 
-  // START PERTAMA KALI
-  document.addEventListener("DOMContentLoaded", () => {
-    shouldScroll = true;
-    startAutoScroll();
-  });
-
-  // MODAL INVITATION
-  $("#modalInvitation").on("shown.bs.modal", function () {
-    shouldScroll = false;
-  });
-
-  $("#modalInvitation").on("hidden.bs.modal", function () {
-    setTimeout(() => {
-      shouldScroll = true;
-      userInteracting = false;
-      startAutoScroll();
-    }, 500);
-  });
-</script>
-
-
+      $("#modalInvitation").on("hidden.bs.modal", function () {
+        setTimeout(() => {
+          shouldScroll = true;
+          userInteracting = false;
+          startAutoScroll();
+        }, 500);
+      });
+    </script>
   </body>
   <!--end::Body-->
 </html>
