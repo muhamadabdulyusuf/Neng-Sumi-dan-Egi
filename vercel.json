@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "^/([^/]+)$",
-      "dest": "/api/render"
+      "dest": "/api/og?slug=$1"
     }
   ]
 }
