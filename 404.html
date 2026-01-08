@@ -434,8 +434,7 @@
                                         type="button"
                                         data-bs-dismiss="modal"
                                         class="btn btn-primary mt-5 btn-sm"
-                                        onclick="if (!window.__cfRLUnblockHandlers) return false; playVideoAt(0)"
-                                        data-cf-modified-28f97be7dcfbb716300f8843-=""
+                                        onclick="playVideoAt()"
                                       >
                                         <i class="bi bi-envelope-open"></i> Buka
                                         Undangan
@@ -1070,15 +1069,14 @@
               seperti Chrome, Firefox, dsb.
             </div>
 
-            <div class="text-center fw-bolder mb-5">
-              Classical Royal British Music - HitsLab
-            </div>
-            <!-- <audio
+            <div class="text-center fw-bolder mb-5">Tulus - Perahu Kertas</div>
+            <audio
               id="audio-player"
-              controls
-              preload="metadata"
-              src="https://cdn.wevitation.com/music/classical-royal-british-music-337714-i91iSIPU.mp3#t=0"
-            ></audio> -->
+              preload="auto"
+              muted
+              loop
+              src="storage/v2/music/Tulus - Perahu Kertas (Konser Salute Erwin Gutawa to 3 Female Songwriters).mp3"
+            ></audio>
           </div>
 
           <div class="modal-footer">
@@ -1719,11 +1717,16 @@
     <script>
       $(document).ready(function () {});
 
-      function playVideoAt(start_at) {
-        const myAudio = document.getElementById("audio-player");
-        if (params.yt_video_id == null) {
-          myAudio.play();
-        }
+      function playVideoAt() {
+        const audio = document.getElementById("audio-player");
+        if (!audio) return;
+
+        audio.muted = false; // penting
+        audio.currentTime = 0;
+
+        audio.play().catch((err) => {
+          console.warn("Autoplay diblokir:", err);
+        });
       }
     </script>
     <script>
