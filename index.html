@@ -8,11 +8,11 @@
     <meta charset="utf-8" />
     <meta
       name="description"
-      content="Undangan untuk Caca. Silahkan klik link ini untuk membuka detail undangan. Neng Sumi &amp; Egi"
+      content="Undangan untuk anda. Silahkan klik link ini untuk membuka detail undangan. Neng Sumi &amp; Egi"
     />
     <meta
       name="keywords"
-      content="Wevitation, Wedding, Pernikahan, Undangan Online, Undangan Digital, Undangan Web, wevitation.com"
+      content="Momentku, Wedding, Pernikahan, Undangan Online, Undangan Digital, Undangan Web, Momentku.my.id"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
@@ -434,7 +434,7 @@
                                         type="button"
                                         data-bs-dismiss="modal"
                                         class="btn btn-primary mt-5 btn-sm"
-                                        onclick="playVideoAt()"
+                                        onclick="playVideoAt(0)"
                                       >
                                         <i class="bi bi-envelope-open"></i> Buka
                                         Undangan
@@ -927,10 +927,9 @@
                         langkah kami dalam menggenapi fitrah. <br />
                         <br />
 
-                        Terima kasih telah hadir untuk memahat kenangan, menjadi
-                        saksi saat janji suci terucap, dan telah menitipkan
-                        do&#039;a yang kelak akan menjadi lentera dalam
-                        perjalanan panjang ibadah kami."
+                        Terimakasih telah hadir, menjadi saksi saat janji suci
+                        terucap, menitip do&#039;a yang kelak akan menjadi
+                        lentera dalam perjalanan panjang ibadah kami."
                       </div>
                       <div id="closing-thanks" class="mt-10">Salam hangat,</div>
                       <div id="closing-title" class="fw-bolder">
@@ -1603,7 +1602,7 @@
 
       gtag("config", "G-14K2D9YSV5");
       var params = {
-        auto_scroll: false,
+        auto_scroll: true,
         label_gift_1:
           "Doa restu anda merupakan karunia yang sangat berarti bagi kedua mempelai. Namun jika memberi adalah ungkapan tanda kasih anda, anda dapat menggunakan fitur berikut",
         label_gift_2: "Anda juga dapat mengirimkan melalui alamat berikut",
@@ -1627,8 +1626,16 @@
           $(".preloader").fadeOut("slow");
         }, 500);
       });
+      $("#modalInvitation").on("hidden.bs.modal", function () {
+        // delay dikit biar browser settle
+        setTimeout(() => {
+          userInteraction = false;
+          shouldScroll = true;
+          startAutoScroll();
+        }, 500);
+      });
     </script>
-    <script>
+    <!-- <script>
       var shouldScroll = false;
       var userInteraction = false;
       var scrolling = false;
@@ -1713,20 +1720,18 @@
           /iPad|iPhone|iPod/.test(navigator.userAgent)
         );
       }
-    </script>
+    </script> -->
+    
     <script>
       $(document).ready(function () {});
 
-      function playVideoAt() {
-        const audio = document.getElementById("audio-player");
-        if (!audio) return;
+      function playVideoAt(start_at) {
+        const myAudio = document.getElementById("audio-player");
 
-        audio.muted = false; // penting
-        audio.currentTime = 0;
-
-        audio.play().catch((err) => {
-          console.warn("Autoplay diblokir:", err);
-        });
+        if (myAudio) {
+          myAudio.muted = false;
+          myAudio.play().catch(() => {});
+        }
       }
     </script>
     <script>
@@ -1860,6 +1865,48 @@
         }
       }
     </script>
+
+    <script>
+  let shouldScroll = false;
+  let userInteracting = false;
+  let rafId = null;
+  let resumeTimer = null;
+
+  function startAutoScroll() {
+    if (rafId) return;
+
+    function step() {
+      if (!shouldScroll || userInteracting) {
+        rafId = null;
+        return;
+      }
+      window.scrollBy(0, 1);
+      rafId = requestAnimationFrame(step);
+    }
+
+    rafId = requestAnimationFrame(step);
+  }
+
+  function pauseAutoScroll() {
+    userInteracting = true;
+
+    // reset timer kalau user masih gerak
+    clearTimeout(resumeTimer);
+
+    // auto resume setelah idle 2.5 detik
+    resumeTimer = setTimeout(() => {
+      userInteracting = false;
+      shouldScroll = true;
+      startAutoScroll();
+    }, 1000);
+  }
+
+  // INTERAKSI USER = PAUSE (BUKAN MATI)
+  ["wheel", "touchstart", "touchmove", "keydown", "click"].forEach((evt) => {
+    window.addEventListener(evt, pauseAutoScroll, { passive: true });
+  });
+</script>
+
   </body>
   <!--end::Body-->
 </html>
