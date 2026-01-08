@@ -4,7 +4,8 @@ const path = require("path");
 module.exports = (req, res) => {
   try {
     const pathname = new URL(req.url, `http://${req.headers.host}`).pathname;
-    const slug = pathname.replace(/^\/api\/render\/?/, "");
+    const parts = pathname.split("/").filter(Boolean);
+    const slug = parts[0] || "";
 
     function fmtName(text) {
       if (!text) return "Tamu Undangan";
