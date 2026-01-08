@@ -1848,24 +1848,6 @@
       defer
     ></script> -->
     <script type="module" src="assets/js/supabase-backend.js"></script>
-    <script>
-  const slug = location.pathname.replace(/^\/|\/$/g, "");
-  if (slug) {
-    const name = slug
-      .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        "content",
-        `Undangan untuk ${name}. Silakan klik link ini untuk membuka detail undangan. Neng Sumi & Egi`
-      );
-    }
-  }
-</script>
-
 
    <script>
   let shouldScroll = false;
