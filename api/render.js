@@ -42,8 +42,7 @@ module.exports = (req, res) => {
         '<meta property="og:description" content="' + desc + '" />\n</head>'
       );
     }
-    html = html.replace(/(id="guest-name"[^>]*>)([^<]*)/i, "$1" + guestName);
-    html = html.replace(/(id="guest-name-2"[^>]*>)([^<]*)/i, "$1" + guestName);
+    html = html.replace(/(data-guest-name[^>]*>)([^<]*)/gi, `$1${guestName}`);
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.status(200).send(html);
   } catch (e) {
