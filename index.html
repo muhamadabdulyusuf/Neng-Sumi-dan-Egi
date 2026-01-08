@@ -1849,24 +1849,25 @@
     ></script> -->
     <script type="module" src="assets/js/supabase-backend.js"></script>
     <script>
-      const slug = location.pathname.replace(/^\/|\/$/g, "");
-      if (slug) {
-        const name = slug
-          .split("-")
-          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-          .join(" ");
+  const slug = location.pathname.replace(/^\/|\/$/g, "");
+  if (slug) {
+    const name = slug
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
 
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) {
-          metaDesc.setAttribute(
-            "content",
-            `Undangan untuk ${name}. Silakan klik link ini untuk membuka detail undangan. Kania & Bagas`
-          );
-        }
-      }
-    </script>
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        "content",
+        `Undangan untuk ${name}. Silakan klik link ini untuk membuka detail undangan. Neng Sumi & Egi`
+      );
+    }
+  }
+</script>
 
-    <script>
+
+   <script>
   let shouldScroll = false;
   let userInteracting = false;
   let rafId = null;
@@ -1880,6 +1881,7 @@
         rafId = null;
         return;
       }
+
       window.scrollBy(0, 1);
       rafId = requestAnimationFrame(step);
     }
@@ -1889,11 +1891,9 @@
 
   function pauseAutoScroll() {
     userInteracting = true;
-
-    // reset timer kalau user masih gerak
     clearTimeout(resumeTimer);
 
-    // auto resume setelah idle 2.5 detik
+    // AUTO RESUME setelah idle
     resumeTimer = setTimeout(() => {
       userInteracting = false;
       shouldScroll = true;
@@ -1901,11 +1901,31 @@
     }, 1000);
   }
 
-  // INTERAKSI USER = PAUSE (BUKAN MATI)
+  // INTERAKSI USER
   ["wheel", "touchstart", "touchmove", "keydown", "click"].forEach((evt) => {
     window.addEventListener(evt, pauseAutoScroll, { passive: true });
   });
+
+  // START PERTAMA KALI
+  document.addEventListener("DOMContentLoaded", () => {
+    shouldScroll = true;
+    startAutoScroll();
+  });
+
+  // MODAL INVITATION
+  $("#modalInvitation").on("shown.bs.modal", function () {
+    shouldScroll = false;
+  });
+
+  $("#modalInvitation").on("hidden.bs.modal", function () {
+    setTimeout(() => {
+      shouldScroll = true;
+      userInteracting = false;
+      startAutoScroll();
+    }, 500);
+  });
 </script>
+
 
   </body>
   <!--end::Body-->
